@@ -12,7 +12,7 @@ matrix:
     # test Mac OS X, as well
     include:
         - os: osx 
-        env: LUA=lua
+          env: LUA=lua
 
 before_install:
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -y $LUA; fi
