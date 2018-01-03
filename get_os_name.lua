@@ -25,7 +25,7 @@ function M.get_os_name()
     if jit and jit.os and jit.arch then
         raw_os_name = jit.os
         raw_arch_name = jit.arch
-        print( ("Debug jit name: %q %q"):format( env_OS, env_ARCH ) )
+        print( ("Debug jit name: %q %q"):format( raw_os_name, raw_arch_name ) )
     else
         if package.config:sub(1,1) == '\\' then
             -- Windows
