@@ -63,6 +63,7 @@ function M.get_os_name()
         ['i[%d]86']         = 'x86',
         ['amd64']           = 'x86_64',
         ['x86_64']          = 'x86_64',
+        ['x64']             = 'x86_64',
         ['Power Macintosh'] = 'powerpc',
         ['^arm']            = 'arm',
         ['^mips']           = 'mips',
@@ -87,12 +88,12 @@ end
 
 
 -- heuristic for detecting standalone script
-if (arg ~= nil and arg[-1] ~= nil) then
+if (... ~= 'get_os_name') then
     -- main
     print(("%q %q"):format(M.get_os_name()))
-else
-    return M
 end
+
+return M
 
 
 
