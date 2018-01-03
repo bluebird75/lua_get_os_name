@@ -8,14 +8,14 @@ env:
         - LUA=lua5.1
         - LUA=luajit     # latest stable version (2.0.x)
 
-# matrix:
-    # test Mac OS X, but limit it to a single build
-#   include:
-#     - os: osx
-#       env: LUA=lua5.1
+matrix:
+    # test Mac OS X, as well
+    include:
+        - os: osx env: LUA=lua
 
 before_install:
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -y $LUA; fi
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install $LUA; fi
 
 script: 
     - $LUA test_get_os_name.lua
