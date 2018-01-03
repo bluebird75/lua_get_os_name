@@ -12,6 +12,14 @@ if os.getenv("TRAVIS_OS_NAME") == 'linux' then
     print("Test OK!")
 end
 
+-- On Travis, Linux
+if os.getenv("TRAVIS_OS_NAME") == 'osx' then
+    print('Testing on Travis CI OS X machine')
+    assert( os_name == "Mac")
+    assert( arch_name == "x86_64")
+    print("Test OK!")
+end
+
 -- On my local computer
 if os.getenv("COMPUTERNAME") == 'DESKTOP-N4L2C0L' then
     print("Testing on Phil's computer")
