@@ -11,6 +11,14 @@ function M.get_os_name()
     -- Return two strings describing the OS name and OS architecture.
     -- For Windows, the OS identification is based on environment variables
     -- On unix, a call to uname is used.
+    -- 
+    -- OS possible values: Windows, Linux, Mac, BSD, Solaris
+    -- Arch possible values: x86, x86864, powerpc, arm, mips
+    -- 
+    -- On Windows, detection based on environment variable is limited
+    -- to what Windows is willing to tell through environement variables. In particular
+    -- 64bits is not always indicated so do not rely hardly on this value.
+
     local raw_os_name, raw_arch_name = '', ''
 
     -- LuaJIT shortcut
@@ -22,6 +30,7 @@ function M.get_os_name()
             -- Windows
             local env_OS = os.getenv('OS')
             local env_ARCH = os.getenv('PROCESSOR_ARCHITECTURE')
+            -- print( ("Debug: %q %q"):format( env_OS, env_ARCH ) )
             if env_OS and env_ARCH then
                 raw_os_name, raw_arch_name = env_OS, env_ARCH
             end
@@ -35,30 +44,30 @@ function M.get_os_name()
     raw_os_name = (raw_os_name):lower()
     raw_arch_name = (raw_arch_name):lower()
 
+    -- print( ("Debug: %q %q"):format( raw_os_name, raw_arch_name) )
+
     local os_patterns = {
-        ['windows'] = 'Windows',
-        ['linux'] = 'Linux',
-        ['mac'] = 'Mac',
-        ['darwin'] = 'Mac',
-        ['^mingw'] = 'Windows',
-        ['^cygwin'] = 'Windows',
-        ['bsd$'] = 'BSD',
-        ['SunOS'] = 'Solaris',
+        ['windows']     = 'Windows',
+        ['linux']       = 'Linux',
+        ['mac']         = 'Mac',
+        ['darwin']      = 'Mac',
+        ['^mingw']      = 'Windows',
+        ['^cygwin']     = 'Windows',
+        ['bsd$']        = 'BSD',
+        ['SunOS']       = 'Solaris',
     }
     
     local arch_patterns = {
-        ['^x86$'] = 'x86',
-        ['i[%d]86'] = 'x86',
-        ['amd64'] = 'x86_64',
-        ['x86_64'] = 'x86_64',
+        ['^x86$']           = 'x86',
+        ['i[%d]86']         = 'x86',
+        ['amd64']           = 'x86_64',
+        ['x86_64']          = 'x86_64',
         ['Power Macintosh'] = 'powerpc',
-        ['^arm'] = 'arm',
-        ['^mips'] = 'mips',
+        ['^arm']            = 'arm',
+        ['^mips']           = 'mips',
     }
 
     local os_name, arch_name = 'unknown', 'unknown'
-
-    -- print( ("Raw names: %s %s"):format(raw_os_name, raw_arch_name) )
 
     for pattern, name in pairs(os_patterns) do
         if raw_os_name:match(pattern) then
