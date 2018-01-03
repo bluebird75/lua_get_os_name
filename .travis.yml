@@ -4,23 +4,23 @@ sudo: false
 os: linux
 
 env:
-  matrix:
-    - LUA=lua5.1
-    - LUA=luajit     # latest stable version (2.0.x)
+    matrix:
+        - LUA=lua5.1
+        - LUA=luajit     # latest stable version (2.0.x)
 
 # matrix:
-  # test Mac OS X, but limit it to a single build
+    # test Mac OS X, but limit it to a single build
 #   include:
 #     - os: osx
 #       env: LUA=lua5.1
 
 before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -y $LUA; fi
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -y $LUA; fi
 
 script: 
-  - $LUA get_os_name.lua
+    - $LUA get_os_name.lua
 
 notifications:
-  email:
-    on_success: change
-    on_failure: always
+    email:
+        on_success: change
+        on_failure: always
