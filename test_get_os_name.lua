@@ -19,3 +19,11 @@ if os.getenv("COMPUTERNAME") == 'DESKTOP-N4L2C0L' then
     assert( arch_name == "x86")
     print("Test OK!")
 end
+
+-- On AppVeyor
+if os.getenv("APPVEYOR") == 'True' then
+    print("Testing on AppVeyor")
+    assert( os_name == "Windows")
+    assert( arch_name == "x86")
+    print("Test OK!")
+end
