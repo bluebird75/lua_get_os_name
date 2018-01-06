@@ -13,12 +13,12 @@ Example on Windows:
 
 Example on MacOs X:
 
-    $ $LUA test_get_os_name.lua
+    $ lua test_get_os_name.lua
     os="Mac" arch="x86_64"
 
 Example on Linux:
 
-    $ $LUA test_get_os_name.lua
+    $ lua test_get_os_name.lua
     os="Linux" arch="x86_64"
 
 Heavily based on the following Gist: https://gist.github.com/soulik/82e9d02a818ce12498d1
