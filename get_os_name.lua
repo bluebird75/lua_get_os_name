@@ -50,6 +50,7 @@ function M.get_os_name()
     local os_patterns = {
         ['windows']     = 'Windows',
         ['linux']       = 'Linux',
+        ['osx']         = 'Mac',
         ['mac']         = 'Mac',
         ['darwin']      = 'Mac',
         ['^mingw']      = 'Windows',
