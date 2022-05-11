@@ -65,7 +65,7 @@ function M.get_os_name()
         ['amd64']           = 'x86_64',
         ['x86_64']          = 'x86_64',
         ['x64']             = 'x86_64',
-        ['Power Macintosh'] = 'powerpc',
+        ['power macintosh'] = 'powerpc',
         ['^arm']            = 'arm',
         ['^mips']           = 'mips',
         ['i86pc']           = 'x86',
